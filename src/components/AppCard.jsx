@@ -22,6 +22,7 @@ const PRICING_BADGE = {
 export default function AppCard({ app }) {
   const [imgError, setImgError] = useState(false);
   const [logoError, setLogoError] = useState(false);
+  const [useThumIo, setUseThumIo] = useState(false);
   const avgRating = app.ratingCount > 0 ? app.ratingSum / app.ratingCount : 0;
   const categoryColor = CATEGORY_COLORS[app.category] || CATEGORY_COLORS.Other;
   const pricingColor = PRICING_BADGE[app.pricing] || PRICING_BADGE.Paid;
@@ -32,9 +33,15 @@ export default function AppCard({ app }) {
     return url.startsWith('http') ? url : `https://${url}`;
   };
 
-  const previewUrl = app.websiteUrl 
+  const microlinkUrl = app.websiteUrl 
     ? `https://api.microlink.io/?url=${encodeURIComponent(getFullUrl(app.websiteUrl))}&screenshot=true&embed=screenshot.url&viewport.width=1280&viewport.height=800&meta=false`
     : null;
+
+  const thumIoUrl = app.websiteUrl
+    ? `https://image.thum.io/get/width/1200/crop/800/noanimate/${getFullUrl(app.websiteUrl)}`
+    : null;
+
+  const previewUrl = useThumIo ? thumIoUrl : microlinkUrl;
 
   return (
     <Link
@@ -43,6 +50,13 @@ export default function AppCard({ app }) {
     >
       {/* Website Preview / Webframe */}
       <div className="h-44 w-full bg-gray-950 relative overflow-hidden group-hover:bg-gray-800 transition-colors">
+        {/* Placeholder Gradient while loading/error */}
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 to-gray-950 flex items-center justify-center opacity-40">
+           <div className="text-3xl font-bold text-gray-800 select-none uppercase tracking-widest">
+             {app.name?.substring(0, 2)}
+           </div>
+        </div>
+
         {/* Mock Browser Header */}
         <div className="absolute top-0 left-0 right-0 h-6 bg-gray-800/80 backdrop-blur-sm border-b border-gray-700/30 flex items-center px-3 gap-1.5 z-10 transition-colors group-hover:bg-gray-700/80">
           <div className="w-1.5 h-1.5 rounded-full bg-red-500/50" />
@@ -57,17 +71,23 @@ export default function AppCard({ app }) {
           <img
             src={previewUrl}
             alt={`${app.name} preview`}
-            className="w-full h-full object-cover object-top opacity-50 group-hover:opacity-100 transition-opacity duration-700 ease-in-out scale-100 group-hover:scale-105"
+            className="w-full h-full object-cover object-top relative z-0 opacity-50 group-hover:opacity-100 transition-opacity duration-700 ease-in-out scale-100 group-hover:scale-105"
             loading="lazy"
-            onError={() => setImgError(true)}
+            onError={() => {
+              if (!useThumIo) {
+                setUseThumIo(true);
+              } else {
+                setImgError(true);
+              }
+            }}
           />
         ) : (
-          <div className="absolute inset-0 flex items-center justify-center text-gray-800/50">
+          <div className="absolute inset-0 flex items-center justify-center text-gray-800/50 z-0">
              <HiOutlineExternalLink size={40} />
           </div>
         )}
         
-        <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent opacity-100 group-hover:opacity-40 transition-opacity" />
+        <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent opacity-100 group-hover:opacity-40 transition-opacity z-1" />
       </div>
 
       <div className="p-5 relative -mt-6">

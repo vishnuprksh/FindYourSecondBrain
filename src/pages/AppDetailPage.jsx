@@ -48,6 +48,7 @@ export default function AppDetailPage() {
   const [editModal, setEditModal] = useState(false);
   const [imgError, setImgError] = useState(false);
   const [logoError, setLogoError] = useState(false);
+  const [useThumIo, setUseThumIo] = useState(false);
 
   // Fetch app
   useEffect(() => {
@@ -241,9 +242,15 @@ export default function AppDetailPage() {
     return url.startsWith('http') ? url : `https://${url}`;
   };
 
-  const previewUrl = app.websiteUrl 
+  const microlinkUrl = app.websiteUrl 
     ? `https://api.microlink.io/?url=${encodeURIComponent(getFullUrl(app.websiteUrl))}&screenshot=true&embed=screenshot.url&viewport.width=1920&viewport.height=1080&meta=false`
     : null;
+
+  const thumIoUrl = app.websiteUrl
+    ? `https://image.thum.io/get/width/1920/crop/1080/noanimate/${getFullUrl(app.websiteUrl)}`
+    : null;
+
+  const previewUrl = useThumIo ? thumIoUrl : microlinkUrl;
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8">
@@ -281,23 +288,36 @@ export default function AppDetailPage() {
 
           {/* Screenshot preview */}
           <div className="aspect-video bg-gray-950 relative">
+            {/* Placeholder Gradient */}
+            <div className="absolute inset-0 bg-gradient-to-br from-gray-900 to-gray-950 flex items-center justify-center opacity-40">
+              <div className="text-6xl font-bold text-gray-800 select-none uppercase tracking-widest">
+                {app.name?.substring(0, 2)}
+              </div>
+            </div>
+
             {previewUrl && !imgError ? (
               <img
                 src={previewUrl}
                 alt={`${app.name} preview`}
-                className="w-full h-full object-cover object-top"
+                className="w-full h-full object-cover object-top relative z-0"
                 loading="eager"
-                onError={() => setImgError(true)}
+                onError={() => {
+                  if (!useThumIo) {
+                    setUseThumIo(true);
+                  } else {
+                    setImgError(true);
+                  }
+                }}
               />
             ) : (
-              <div className="absolute inset-0 flex items-center justify-center text-gray-700">
+              <div className="absolute inset-0 flex items-center justify-center text-gray-700 z-0">
                 <HiOutlineExternalLink size={60} />
               </div>
             )}
             
             {/* View live site button overlay */}
             {app.websiteUrl && (
-              <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-gray-950/80 to-transparent flex justify-center translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+              <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-gray-950/80 to-transparent flex justify-center translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 z-10">
                 <a
                   href={app.websiteUrl}
                   target="_blank"
