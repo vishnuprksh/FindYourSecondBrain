@@ -322,7 +322,7 @@ export default function AppDetailPage() {
           <div className="min-w-0 flex-1">
             <div className="flex items-start justify-between gap-3">
               <h1 className="text-2xl font-extrabold text-gray-100">{app.name}</h1>
-              {user?.uid === app.submittedBy && (
+              {user && (
                 <button
                   onClick={handleEditClick}
                   className="shrink-0 flex items-center gap-1.5 text-sm font-medium text-gray-400 hover:text-brand-400 hover:bg-brand-900/30 px-3 py-1.5 rounded-lg border border-gray-700 hover:border-brand-700 transition-colors"
