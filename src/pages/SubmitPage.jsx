@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from '../firebase';
 import { useAuth } from '../contexts/AuthContext';
-import AuthModal from '../components/AuthModal';
 import toast from 'react-hot-toast';
 import { HiOutlinePlus, HiOutlineGlobe, HiOutlineX } from 'react-icons/hi';
 
@@ -20,7 +19,6 @@ const SUGGESTED_TAGS = [
 export default function SubmitPage() {
   const { user } = useAuth();
   const navigate = useNavigate();
-  const [authModal, setAuthModal] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [tagInput, setTagInput] = useState('');
 
@@ -58,11 +56,6 @@ export default function SubmitPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!user) {
-      setAuthModal(true);
-      return;
-    }
-
     if (!form.name.trim() || !form.description.trim()) {
       toast.error('Name and description are required.');
       return;
@@ -98,12 +91,6 @@ export default function SubmitPage() {
 
   return (
     <div className="max-w-2xl mx-auto px-4 sm:px-6 py-8">
-      <AuthModal
-        isOpen={authModal}
-        onClose={() => setAuthModal(false)}
-        message="Continue as guest to submit a new second brain app."
-      />
-
       <div className="mb-8">
         <h1 className="text-2xl font-extrabold text-gray-100">Submit a Second Brain App</h1>
         <p className="text-gray-400 text-sm mt-1">

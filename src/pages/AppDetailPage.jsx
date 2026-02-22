@@ -15,7 +15,6 @@ import {
 } from 'firebase/firestore';
 import { db } from '../firebase';
 import { useAuth } from '../contexts/AuthContext';
-import AuthModal from '../components/AuthModal';
 import EditAppModal from '../components/EditAppModal';
 import StarRating from '../components/StarRating';
 import {
@@ -46,7 +45,6 @@ export default function AppDetailPage() {
   const [newComment, setNewComment] = useState('');
   const [submittingComment, setSubmittingComment] = useState(false);
   const [userRating, setUserRating] = useState(0);
-  const [authModal, setAuthModal] = useState({ open: false, message: '' });
   const [editModal, setEditModal] = useState(false);
 
   // Fetch app
@@ -92,11 +90,6 @@ export default function AppDetailPage() {
   }, [user, id]);
 
   const handleRate = async (rating) => {
-    if (!user) {
-      setAuthModal({ open: true, message: 'Please sign in to rate this app.' });
-      return;
-    }
-
     try {
       const appRef = doc(db, 'apps', id);
       const ratingRef = doc(db, 'apps', id, 'ratings', user.uid);
@@ -149,10 +142,6 @@ export default function AppDetailPage() {
 
   const handleComment = async (e) => {
     e.preventDefault();
-    if (!user) {
-      setAuthModal({ open: true, message: 'Continue as guest to leave a comment.' });
-      return;
-    }
     if (!newComment.trim()) return;
 
     setSubmittingComment(true);
@@ -189,10 +178,6 @@ export default function AppDetailPage() {
   };
 
   const handleEditClick = () => {
-    if (!user) {
-      setAuthModal({ open: true, message: 'Continue as guest to edit this app.' });
-      return;
-    }
     setEditModal(true);
   };
 
@@ -250,11 +235,6 @@ export default function AppDetailPage() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8">
-      <AuthModal
-        isOpen={authModal.open}
-        onClose={() => setAuthModal({ open: false, message: '' })}
-        message={authModal.message}
-      />
       <EditAppModal
         app={app}
         isOpen={editModal}
@@ -396,7 +376,7 @@ export default function AppDetailPage() {
           <textarea
             value={newComment}
             onChange={(e) => setNewComment(e.target.value)}
-            placeholder={user ? 'Share your thoughts about this app...' : 'Sign in to leave a comment...'}
+            placeholder="Share your thoughts about this app..."
             rows={3}
             className="w-full border border-gray-700 rounded-xl px-4 py-3 bg-gray-800 text-gray-100 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition placeholder:text-gray-500"
           />

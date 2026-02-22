@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { doc, updateDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from '../firebase';
 import { useAuth } from '../contexts/AuthContext';
-import AuthModal from './AuthModal';
 import toast from 'react-hot-toast';
 import {
   HiOutlineX,
@@ -46,7 +45,6 @@ const SUGGESTED_TAGS = [
 
 export default function EditAppModal({ app, isOpen, onClose, onUpdated }) {
   const { user } = useAuth();
-  const [authModal, setAuthModal] = useState(false);
   const [saving, setSaving] = useState(false);
   const [tagInput, setTagInput] = useState('');
 
@@ -111,11 +109,6 @@ export default function EditAppModal({ app, isOpen, onClose, onUpdated }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!user) {
-      setAuthModal(true);
-      return;
-    }
-
     if (!form.name.trim() || !form.description.trim()) {
       toast.error('Name and description are required.');
       return;
@@ -160,12 +153,6 @@ export default function EditAppModal({ app, isOpen, onClose, onUpdated }) {
       className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
       onClick={(e) => e.target === e.currentTarget && onClose()}
     >
-      <AuthModal
-        isOpen={authModal}
-        onClose={() => setAuthModal(false)}
-        message="Continue as guest to edit this app."
-      />
-
       <div className="bg-gray-900 rounded-2xl shadow-xl border border-gray-700/50 w-full max-w-2xl max-h-[90vh] overflow-y-auto">
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-5 border-b border-gray-700/50 sticky top-0 bg-gray-900 z-10 rounded-t-2xl">
