@@ -47,6 +47,7 @@ export default function AppDetailPage() {
   const [userRating, setUserRating] = useState(0);
   const [editModal, setEditModal] = useState(false);
   const [imgError, setImgError] = useState(false);
+  const [logoError, setLogoError] = useState(false);
 
   // Fetch app
   useEffect(() => {
@@ -314,22 +315,18 @@ export default function AppDetailPage() {
       {/* Header */}
       <div className="bg-gray-900 rounded-2xl border border-gray-700/50 p-6 sm:p-8">
         <div className="flex items-start gap-5">
-          {app.logoUrl ? (
+          {app.logoUrl && !logoError ? (
             <img
               src={app.logoUrl}
               alt={app.name}
-              className="w-20 h-20 rounded-2xl object-cover bg-gray-800 shrink-0"
-              onError={(e) => {
-                e.target.style.display = 'none';
-                e.target.nextSibling.style.display = 'flex';
-              }}
+              className="w-20 h-20 rounded-2xl object-cover bg-gray-950 ring-4 ring-gray-800"
+              onError={() => setLogoError(true)}
             />
-          ) : null}
-          <div
-            className={`w-20 h-20 rounded-2xl bg-brand-900/40 shrink-0 items-center justify-center text-brand-400 font-bold text-3xl ${app.logoUrl ? 'hidden' : 'flex'}`}
-          >
-            {app.name?.charAt(0)?.toUpperCase()}
-          </div>
+          ) : (
+            <div className="w-20 h-20 rounded-2xl bg-brand-900/40 ring-4 ring-gray-800 flex items-center justify-center text-brand-400 font-bold text-3xl">
+              {app.name?.charAt(0)?.toUpperCase()}
+            </div>
+          )}
 
           <div className="min-w-0 flex-1">
             <div className="flex items-start justify-between gap-3">

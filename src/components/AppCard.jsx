@@ -21,6 +21,7 @@ const PRICING_BADGE = {
 
 export default function AppCard({ app }) {
   const [imgError, setImgError] = useState(false);
+  const [logoError, setLogoError] = useState(false);
   const avgRating = app.ratingCount > 0 ? app.ratingSum / app.ratingCount : 0;
   const categoryColor = CATEGORY_COLORS[app.category] || CATEGORY_COLORS.Other;
   const pricingColor = PRICING_BADGE[app.pricing] || PRICING_BADGE.Paid;
@@ -72,22 +73,20 @@ export default function AppCard({ app }) {
       <div className="p-5 relative -mt-6">
         {/* Header */}
         <div className="flex items-start gap-4">
-          {app.logoUrl ? (
+          {app.logoUrl && !logoError ? (
             <img
               src={app.logoUrl}
               alt={app.name}
               className="w-14 h-14 rounded-xl object-cover bg-gray-950 ring-4 ring-gray-900 shrink-0"
-              onError={(e) => {
-                e.target.style.display = 'none';
-                e.target.nextSibling.style.display = 'flex';
-              }}
+              onError={() => setLogoError(true)}
             />
-          ) : null}
-          <div
-            className={`w-14 h-14 rounded-xl bg-brand-900/40 ring-4 ring-gray-900 shrink-0 items-center justify-center text-brand-400 font-bold text-xl ${app.logoUrl ? 'hidden' : 'flex'}`}
-          >
-            {app.name?.charAt(0)?.toUpperCase()}
-          </div>
+          ) : (
+            <div
+              className="w-14 h-14 rounded-xl bg-brand-900/40 ring-4 ring-gray-900 shrink-0 flex items-center justify-center text-brand-400 font-bold text-xl"
+            >
+              {app.name?.charAt(0)?.toUpperCase()}
+            </div>
+          )}
 
           <div className="min-w-0 flex-1">
             <h3 className="text-base font-bold text-gray-100 group-hover:text-brand-400 transition-colors truncate">
