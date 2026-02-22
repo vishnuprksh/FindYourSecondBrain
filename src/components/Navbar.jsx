@@ -6,13 +6,13 @@ export default function Navbar() {
   const { user, loginAnonymously, logout } = useAuth();
 
   return (
-    <nav className="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-gray-200">
+    <nav className="sticky top-0 z-40 bg-gray-900/80 backdrop-blur-md border-b border-gray-700/50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2.5 group">
             <img src="/brain.svg" alt="logo" className="w-8 h-8 group-hover:scale-110 transition-transform" />
-            <span className="text-lg font-bold text-gray-900 hidden sm:block">
+            <span className="text-lg font-bold text-gray-100 hidden sm:block">
               Second<span className="text-brand-600">Brain</span>Hub
             </span>
           </Link>
@@ -29,12 +29,12 @@ export default function Navbar() {
 
             {user ? (
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full ring-2 ring-brand-200 bg-brand-100 flex items-center justify-center">
-                  <HiOutlineUser size={18} className="text-brand-600" />
+                <div className="w-8 h-8 rounded-full ring-2 ring-brand-700 bg-brand-900/40 flex items-center justify-center">
+                  <HiOutlineUser size={18} className="text-brand-400" />
                 </div>
                 <button
                   onClick={logout}
-                  className="text-gray-500 hover:text-red-500 transition-colors"
+                  className="text-gray-400 hover:text-red-400 transition-colors"
                   title="Sign out"
                 >
                   <HiOutlineLogout size={20} />
@@ -43,7 +43,7 @@ export default function Navbar() {
             ) : (
               <button
                 onClick={loginAnonymously}
-                className="flex items-center gap-2 border border-gray-300 hover:border-gray-400 bg-white text-sm font-medium px-4 py-2 rounded-lg transition-colors"
+                className="flex items-center gap-2 border border-gray-600 hover:border-gray-500 bg-gray-800 text-gray-200 text-sm font-medium px-4 py-2 rounded-lg transition-colors"
               >
                 <HiOutlineUser size={18} />
                 <span className="hidden sm:inline">Sign in</span>

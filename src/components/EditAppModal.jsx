@@ -166,13 +166,13 @@ export default function EditAppModal({ app, isOpen, onClose, onUpdated }) {
         message="Continue as guest to edit this app."
       />
 
-      <div className="bg-white rounded-2xl shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+      <div className="bg-gray-900 rounded-2xl shadow-xl border border-gray-700/50 w-full max-w-2xl max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-5 border-b border-gray-100 sticky top-0 bg-white z-10 rounded-t-2xl">
-          <h2 className="text-xl font-extrabold text-gray-900">Edit App</h2>
+        <div className="flex items-center justify-between px-6 py-5 border-b border-gray-700/50 sticky top-0 bg-gray-900 z-10 rounded-t-2xl">
+          <h2 className="text-xl font-extrabold text-gray-100">Edit App</h2>
           <button
             onClick={onClose}
-            className="text-gray-400 hover:text-gray-600 transition-colors p-1 rounded-lg hover:bg-gray-100"
+            className="text-gray-500 hover:text-gray-300 transition-colors p-1 rounded-lg hover:bg-gray-800"
           >
             <HiOutlineX size={20} />
           </button>
@@ -181,8 +181,8 @@ export default function EditAppModal({ app, isOpen, onClose, onUpdated }) {
         <form onSubmit={handleSubmit} className="p-6 space-y-5">
           {/* Name */}
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-1.5">
-              App Name <span className="text-red-500">*</span>
+            <label className="block text-sm font-semibold text-gray-300 mb-1.5">
+              App Name <span className="text-red-400">*</span>
             </label>
             <input
               type="text"
@@ -191,14 +191,14 @@ export default function EditAppModal({ app, isOpen, onClose, onUpdated }) {
               onChange={handleChange}
               required
               placeholder="e.g. Obsidian"
-              className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-400 transition placeholder:text-gray-400"
+              className="w-full border border-gray-700 rounded-xl px-4 py-2.5 bg-gray-800 text-gray-100 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition placeholder:text-gray-500"
             />
           </div>
 
           {/* Description */}
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-1.5">
-              Description <span className="text-red-500">*</span>
+            <label className="block text-sm font-semibold text-gray-300 mb-1.5">
+              Description <span className="text-red-400">*</span>
             </label>
             <textarea
               name="description"
@@ -207,13 +207,13 @@ export default function EditAppModal({ app, isOpen, onClose, onUpdated }) {
               rows={4}
               required
               placeholder="Briefly describe what this app does..."
-              className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-400 transition placeholder:text-gray-400"
+              className="w-full border border-gray-700 rounded-xl px-4 py-3 bg-gray-800 text-gray-100 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition placeholder:text-gray-500"
             />
           </div>
 
           {/* Website URL */}
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-1.5">
+            <label className="block text-sm font-semibold text-gray-300 mb-1.5">
               Website URL
             </label>
             <input
@@ -222,21 +222,21 @@ export default function EditAppModal({ app, isOpen, onClose, onUpdated }) {
               value={form.websiteUrl}
               onChange={handleChange}
               placeholder="https://example.com"
-              className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-400 transition placeholder:text-gray-400"
+              className="w-full border border-gray-700 rounded-xl px-4 py-2.5 bg-gray-800 text-gray-100 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition placeholder:text-gray-500"
             />
           </div>
 
           {/* Category & Pricing */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-1.5">
+              <label className="block text-sm font-semibold text-gray-300 mb-1.5">
                 Category
               </label>
               <select
                 name="category"
                 value={form.category}
                 onChange={handleChange}
-                className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-400 transition"
+                className="w-full border border-gray-700 rounded-xl px-4 py-2.5 text-sm bg-gray-800 text-gray-100 focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition"
               >
                 {CATEGORIES.map((cat) => (
                   <option key={cat} value={cat}>
@@ -247,14 +247,14 @@ export default function EditAppModal({ app, isOpen, onClose, onUpdated }) {
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-1.5">
+              <label className="block text-sm font-semibold text-gray-300 mb-1.5">
                 Pricing
               </label>
               <select
                 name="pricing"
                 value={form.pricing}
                 onChange={handleChange}
-                className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-400 transition"
+                className="w-full border border-gray-700 rounded-xl px-4 py-2.5 text-sm bg-gray-800 text-gray-100 focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition"
               >
                 {PRICING_OPTIONS.map((opt) => (
                   <option key={opt} value={opt}>
@@ -267,9 +267,9 @@ export default function EditAppModal({ app, isOpen, onClose, onUpdated }) {
 
           {/* Tags */}
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-1.5">
+            <label className="block text-sm font-semibold text-gray-300 mb-1.5">
               Tags
-              <span className="text-xs font-normal text-gray-400 ml-2">
+              <span className="text-xs font-normal text-gray-500 ml-2">
                 Press Enter or comma to add custom tags
               </span>
             </label>
@@ -280,13 +280,13 @@ export default function EditAppModal({ app, isOpen, onClose, onUpdated }) {
                 {form.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="inline-flex items-center gap-1 bg-brand-100 text-brand-700 text-xs font-medium px-2.5 py-1 rounded-full"
+                    className="inline-flex items-center gap-1 bg-brand-900/40 text-brand-300 text-xs font-medium px-2.5 py-1 rounded-full"
                   >
                     {tag}
                     <button
                       type="button"
                       onClick={() => removeTag(tag)}
-                      className="hover:text-brand-900 transition-colors ml-0.5"
+                      className="hover:text-brand-200 transition-colors ml-0.5"
                     >
                       <HiOutlineX size={12} />
                     </button>
@@ -304,7 +304,7 @@ export default function EditAppModal({ app, isOpen, onClose, onUpdated }) {
                 onKeyDown={handleTagKeyDown}
                 onBlur={handleTagInputBlur}
                 placeholder="Type a tag and press Enter..."
-                className="flex-1 border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-400 transition placeholder:text-gray-400"
+                className="flex-1 border border-gray-700 rounded-xl px-4 py-2.5 bg-gray-800 text-gray-100 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition placeholder:text-gray-500"
               />
               <button
                 type="button"
@@ -313,7 +313,7 @@ export default function EditAppModal({ app, isOpen, onClose, onUpdated }) {
                   setTagInput('');
                 }}
                 disabled={!tagInput.trim()}
-                className="px-3 py-2.5 bg-brand-600 hover:bg-brand-700 disabled:bg-gray-200 disabled:cursor-not-allowed text-white rounded-xl transition-colors"
+                className="px-3 py-2.5 bg-brand-600 hover:bg-brand-700 disabled:bg-gray-700 disabled:cursor-not-allowed text-white rounded-xl transition-colors"
               >
                 <HiOutlinePlus size={16} />
               </button>
@@ -322,14 +322,14 @@ export default function EditAppModal({ app, isOpen, onClose, onUpdated }) {
             {/* Suggested tags */}
             {availableSuggestions.length > 0 && (
               <div className="mt-3">
-                <p className="text-xs text-gray-400 mb-2">Suggestions:</p>
+                <p className="text-xs text-gray-500 mb-2">Suggestions:</p>
                 <div className="flex flex-wrap gap-1.5">
                   {availableSuggestions.map((tag) => (
                     <button
                       key={tag}
                       type="button"
                       onClick={() => addTag(tag)}
-                      className="text-xs px-2.5 py-1 rounded-full border border-gray-200 text-gray-500 hover:border-brand-300 hover:text-brand-600 hover:bg-brand-50 transition-colors"
+                      className="text-xs px-2.5 py-1 rounded-full border border-gray-700 text-gray-400 hover:border-brand-600 hover:text-brand-400 hover:bg-brand-900/30 transition-colors"
                     >
                       + {tag}
                     </button>
@@ -340,18 +340,18 @@ export default function EditAppModal({ app, isOpen, onClose, onUpdated }) {
           </div>
 
           {/* Actions */}
-          <div className="flex items-center justify-end gap-3 pt-2 border-t border-gray-100">
+          <div className="flex items-center justify-end gap-3 pt-2 border-t border-gray-700/50">
             <button
               type="button"
               onClick={onClose}
-              className="px-5 py-2.5 text-sm font-semibold text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-xl transition-colors"
+              className="px-5 py-2.5 text-sm font-semibold text-gray-400 hover:text-gray-200 hover:bg-gray-800 rounded-xl transition-colors"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={saving}
-              className="flex items-center gap-2 bg-brand-600 hover:bg-brand-700 disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-semibold text-sm px-6 py-2.5 rounded-xl transition-colors shadow-sm"
+              className="flex items-center gap-2 bg-brand-600 hover:bg-brand-700 disabled:bg-gray-700 disabled:cursor-not-allowed text-white font-semibold text-sm px-6 py-2.5 rounded-xl transition-colors shadow-sm"
             >
               <HiOutlineSave size={16} />
               {saving ? 'Saving...' : 'Save Changes'}

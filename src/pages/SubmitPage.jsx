@@ -105,17 +105,17 @@ export default function SubmitPage() {
       />
 
       <div className="mb-8">
-        <h1 className="text-2xl font-extrabold text-gray-900">Submit a Second Brain App</h1>
-        <p className="text-gray-500 text-sm mt-1">
+        <h1 className="text-2xl font-extrabold text-gray-100">Submit a Second Brain App</h1>
+        <p className="text-gray-400 text-sm mt-1">
           Share a tool with the community. Fill in the details below.
         </p>
       </div>
 
-      <form onSubmit={handleSubmit} className="bg-white rounded-2xl border border-gray-200 p-6 sm:p-8 space-y-6">
+      <form onSubmit={handleSubmit} className="bg-gray-900 rounded-2xl border border-gray-700/50 p-6 sm:p-8 space-y-6">
         {/* Name */}
         <div>
-          <label className="block text-sm font-semibold text-gray-700 mb-1.5">
-            App Name <span className="text-red-500">*</span>
+          <label className="block text-sm font-semibold text-gray-300 mb-1.5">
+            App Name <span className="text-red-400">*</span>
           </label>
           <input
             type="text"
@@ -124,14 +124,14 @@ export default function SubmitPage() {
             onChange={handleChange}
             placeholder="e.g. Obsidian"
             required
-            className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-400 transition placeholder:text-gray-400"
+            className="w-full border border-gray-700 rounded-xl px-4 py-2.5 bg-gray-800 text-gray-100 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition placeholder:text-gray-500"
           />
         </div>
 
         {/* Description */}
         <div>
-          <label className="block text-sm font-semibold text-gray-700 mb-1.5">
-            Description <span className="text-red-500">*</span>
+          <label className="block text-sm font-semibold text-gray-300 mb-1.5">
+            Description <span className="text-red-400">*</span>
           </label>
           <textarea
             name="description"
@@ -140,13 +140,13 @@ export default function SubmitPage() {
             placeholder="Briefly describe what this app does and why it's great for building a second brain..."
             rows={4}
             required
-            className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-400 transition placeholder:text-gray-400"
+            className="w-full border border-gray-700 rounded-xl px-4 py-3 bg-gray-800 text-gray-100 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition placeholder:text-gray-500"
           />
         </div>
 
         {/* Website URL */}
         <div>
-          <label className="block text-sm font-semibold text-gray-700 mb-1.5">
+          <label className="block text-sm font-semibold text-gray-300 mb-1.5">
             <span className="inline-flex items-center gap-1.5">
               <HiOutlineGlobe size={14} />
               Website URL
@@ -158,21 +158,21 @@ export default function SubmitPage() {
             value={form.websiteUrl}
             onChange={handleChange}
             placeholder="https://example.com"
-            className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-400 transition placeholder:text-gray-400"
+            className="w-full border border-gray-700 rounded-xl px-4 py-2.5 bg-gray-800 text-gray-100 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition placeholder:text-gray-500"
           />
         </div>
 
         {/* Category & Pricing row */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-1.5">
+            <label className="block text-sm font-semibold text-gray-300 mb-1.5">
               Category
             </label>
             <select
               name="category"
               value={form.category}
               onChange={handleChange}
-              className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-400 transition"
+              className="w-full border border-gray-700 rounded-xl px-4 py-2.5 text-sm bg-gray-800 text-gray-100 focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition"
             >
               {CATEGORIES.map((cat) => (
                 <option key={cat} value={cat}>{cat}</option>
@@ -181,14 +181,14 @@ export default function SubmitPage() {
           </div>
 
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-1.5">
+            <label className="block text-sm font-semibold text-gray-300 mb-1.5">
               Pricing
             </label>
             <select
               name="pricing"
               value={form.pricing}
               onChange={handleChange}
-              className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-400 transition"
+              className="w-full border border-gray-700 rounded-xl px-4 py-2.5 text-sm bg-gray-800 text-gray-100 focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition"
             >
               {PRICING_OPTIONS.map((opt) => (
                 <option key={opt} value={opt}>{opt}</option>
@@ -199,9 +199,9 @@ export default function SubmitPage() {
 
         {/* Tags */}
         <div>
-          <label className="block text-sm font-semibold text-gray-700 mb-1.5">
+          <label className="block text-sm font-semibold text-gray-300 mb-1.5">
             Tags
-            <span className="text-xs font-normal text-gray-400 ml-2">
+            <span className="text-xs font-normal text-gray-500 ml-2">
               Press Enter or comma to add custom tags
             </span>
           </label>
@@ -212,13 +212,13 @@ export default function SubmitPage() {
               {form.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="inline-flex items-center gap-1 bg-brand-100 text-brand-700 text-xs font-medium px-2.5 py-1 rounded-full"
+                  className="inline-flex items-center gap-1 bg-brand-900/40 text-brand-300 text-xs font-medium px-2.5 py-1 rounded-full"
                 >
                   {tag}
                   <button
                     type="button"
                     onClick={() => removeTag(tag)}
-                    className="hover:text-brand-900 transition-colors ml-0.5"
+                    className="hover:text-brand-200 transition-colors ml-0.5"
                   >
                     <HiOutlineX size={12} />
                   </button>
@@ -241,13 +241,13 @@ export default function SubmitPage() {
                 }
               }}
               placeholder="Type a tag and press Enter..."
-              className="flex-1 border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-400 transition placeholder:text-gray-400"
+              className="flex-1 border border-gray-700 rounded-xl px-4 py-2.5 bg-gray-800 text-gray-100 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition placeholder:text-gray-500"
             />
             <button
               type="button"
               onClick={() => { addTag(tagInput); setTagInput(''); }}
               disabled={!tagInput.trim()}
-              className="px-3 py-2.5 bg-brand-600 hover:bg-brand-700 disabled:bg-gray-200 disabled:cursor-not-allowed text-white rounded-xl transition-colors"
+              className="px-3 py-2.5 bg-brand-600 hover:bg-brand-700 disabled:bg-gray-700 disabled:cursor-not-allowed text-white rounded-xl transition-colors"
             >
               <HiOutlinePlus size={16} />
             </button>
@@ -256,14 +256,14 @@ export default function SubmitPage() {
           {/* Suggested tags */}
           {SUGGESTED_TAGS.filter((t) => !form.tags.includes(t)).length > 0 && (
             <div className="mt-3">
-              <p className="text-xs text-gray-400 mb-2">Suggestions:</p>
+              <p className="text-xs text-gray-500 mb-2">Suggestions:</p>
               <div className="flex flex-wrap gap-1.5">
                 {SUGGESTED_TAGS.filter((t) => !form.tags.includes(t)).map((tag) => (
                   <button
                     key={tag}
                     type="button"
                     onClick={() => addTag(tag)}
-                    className="text-xs px-2.5 py-1 rounded-full border border-gray-200 text-gray-500 hover:border-brand-300 hover:text-brand-600 hover:bg-brand-50 transition-colors"
+                    className="text-xs px-2.5 py-1 rounded-full border border-gray-700 text-gray-400 hover:border-brand-600 hover:text-brand-400 hover:bg-brand-900/30 transition-colors"
                   >
                     + {tag}
                   </button>
@@ -277,7 +277,7 @@ export default function SubmitPage() {
         <button
           type="submit"
           disabled={submitting}
-          className="w-full flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-700 disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-semibold py-3 rounded-xl transition-colors shadow-sm"
+          className="w-full flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-700 disabled:bg-gray-700 disabled:cursor-not-allowed text-white font-semibold py-3 rounded-xl transition-colors shadow-sm"
         >
           <HiOutlinePlus size={18} />
           {submitting ? 'Submitting...' : 'Submit App'}

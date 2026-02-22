@@ -62,11 +62,11 @@ export default function HomePage() {
     <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8">
       {/* Hero */}
       <div className="text-center mb-10">
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-3">
+        <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-100 mb-3">
           Discover Your Perfect{' '}
-          <span className="text-brand-600">Second Brain</span>
+          <span className="text-brand-400">Second Brain</span>
         </h1>
-        <p className="text-gray-500 text-base sm:text-lg max-w-2xl mx-auto">
+        <p className="text-gray-400 text-base sm:text-lg max-w-2xl mx-auto">
           A community-driven directory of the best personal knowledge management tools. 
           Find, rate, and review apps that help you think better.
         </p>
@@ -88,7 +88,7 @@ export default function HomePage() {
                 className={`text-xs font-medium px-3 py-1.5 rounded-full transition-colors ${
                   category === cat
                     ? 'bg-brand-600 text-white'
-                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                    : 'bg-gray-800 text-gray-400 hover:bg-gray-700'
                 }`}
               >
                 {cat}
@@ -102,7 +102,7 @@ export default function HomePage() {
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="text-sm border border-gray-200 rounded-lg px-3 py-1.5 bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20"
+              className="text-sm border border-gray-700 rounded-lg px-3 py-1.5 bg-gray-800 text-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-500/20"
             >
               {SORT_OPTIONS.map((opt) => (
                 <option key={opt.value} value={opt.value}>
@@ -118,17 +118,17 @@ export default function HomePage() {
       {loading ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {[1, 2, 3, 4, 5, 6].map((i) => (
-            <div key={i} className="bg-white rounded-2xl border border-gray-200 p-5 animate-pulse">
+            <div key={i} className="bg-gray-900 rounded-2xl border border-gray-700/50 p-5 animate-pulse">
               <div className="flex items-start gap-4">
-                <div className="w-14 h-14 rounded-xl bg-gray-200" />
+                <div className="w-14 h-14 rounded-xl bg-gray-800" />
                 <div className="flex-1 space-y-2">
-                  <div className="h-4 bg-gray-200 rounded w-3/4" />
-                  <div className="h-3 bg-gray-200 rounded w-1/2" />
+                  <div className="h-4 bg-gray-800 rounded w-3/4" />
+                  <div className="h-3 bg-gray-800 rounded w-1/2" />
                 </div>
               </div>
               <div className="mt-4 space-y-2">
-                <div className="h-3 bg-gray-200 rounded" />
-                <div className="h-3 bg-gray-200 rounded w-4/5" />
+                <div className="h-3 bg-gray-800 rounded" />
+                <div className="h-3 bg-gray-800 rounded w-4/5" />
               </div>
             </div>
           ))}
@@ -136,8 +136,8 @@ export default function HomePage() {
       ) : filtered.length === 0 ? (
         <div className="text-center py-16">
           <div className="text-5xl mb-4">🔍</div>
-          <h3 className="text-lg font-semibold text-gray-700 mb-1">No apps found</h3>
-          <p className="text-gray-400 text-sm">
+          <h3 className="text-lg font-semibold text-gray-300 mb-1">No apps found</h3>
+          <p className="text-gray-500 text-sm">
             {search || category !== 'All'
               ? 'Try adjusting your search or filters.'
               : 'Be the first to submit a second brain app!'}
@@ -153,7 +153,7 @@ export default function HomePage() {
 
       {/* Stats footer */}
       {!loading && apps.length > 0 && (
-        <div className="text-center mt-10 text-sm text-gray-400">
+        <div className="text-center mt-10 text-sm text-gray-600">
           Showing {filtered.length} of {apps.length} apps
         </div>
       )}

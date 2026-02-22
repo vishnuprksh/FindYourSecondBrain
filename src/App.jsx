@@ -7,16 +7,17 @@ import SubmitPage from './pages/SubmitPage';
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-950">
       <Toaster
         position="top-right"
         toastOptions={{
           duration: 3000,
           style: {
             borderRadius: '12px',
-            background: '#1e293b',
-            color: '#fff',
+            background: '#111827',
+            color: '#f3f4f6',
             fontSize: '14px',
+            border: '1px solid rgba(55,65,81,0.5)',
           },
         }}
       />
@@ -30,15 +31,15 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-gray-200 mt-16 py-8">
+      <footer className="border-t border-gray-800 mt-16 py-8">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 text-center">
-          <p className="text-sm text-gray-400">
+          <p className="text-sm text-gray-500">
             Built with ❤️ for the{' '}
             <a
               href="https://reddit.com/r/SecondBrain"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-brand-600 hover:underline"
+              className="text-brand-400 hover:underline"
             >
               r/SecondBrain
             </a>{' '}

@@ -28,13 +28,13 @@ import {
 import toast from 'react-hot-toast';
 
 const CATEGORY_COLORS = {
-  'Note-taking': 'bg-blue-100 text-blue-700',
-  PKM: 'bg-purple-100 text-purple-700',
-  'Task Management': 'bg-green-100 text-green-700',
-  Whiteboard: 'bg-orange-100 text-orange-700',
-  Writing: 'bg-pink-100 text-pink-700',
-  'All-in-one': 'bg-indigo-100 text-indigo-700',
-  Other: 'bg-gray-100 text-gray-600',
+  'Note-taking': 'bg-blue-900/50 text-blue-300',
+  PKM: 'bg-purple-900/50 text-purple-300',
+  'Task Management': 'bg-green-900/50 text-green-300',
+  Whiteboard: 'bg-orange-900/50 text-orange-300',
+  Writing: 'bg-pink-900/50 text-pink-300',
+  'All-in-one': 'bg-indigo-900/50 text-indigo-300',
+  Other: 'bg-gray-800 text-gray-400',
 };
 
 export default function AppDetailPage() {
@@ -216,18 +216,18 @@ export default function AppDetailPage() {
   if (loading) {
     return (
       <div className="max-w-3xl mx-auto px-4 py-12 animate-pulse">
-        <div className="h-6 bg-gray-200 rounded w-1/4 mb-6" />
+        <div className="h-6 bg-gray-800 rounded w-1/4 mb-6" />
         <div className="flex gap-5">
-          <div className="w-20 h-20 bg-gray-200 rounded-2xl" />
+          <div className="w-20 h-20 bg-gray-800 rounded-2xl" />
           <div className="flex-1 space-y-3">
-            <div className="h-7 bg-gray-200 rounded w-1/3" />
-            <div className="h-4 bg-gray-200 rounded w-1/2" />
+            <div className="h-7 bg-gray-800 rounded w-1/3" />
+            <div className="h-4 bg-gray-800 rounded w-1/2" />
           </div>
         </div>
         <div className="mt-6 space-y-3">
-          <div className="h-4 bg-gray-200 rounded" />
-          <div className="h-4 bg-gray-200 rounded w-5/6" />
-          <div className="h-4 bg-gray-200 rounded w-2/3" />
+          <div className="h-4 bg-gray-800 rounded" />
+          <div className="h-4 bg-gray-800 rounded w-5/6" />
+          <div className="h-4 bg-gray-800 rounded w-2/3" />
         </div>
       </div>
     );
@@ -237,8 +237,8 @@ export default function AppDetailPage() {
     return (
       <div className="text-center py-20">
         <div className="text-5xl mb-4">😵</div>
-        <h2 className="text-xl font-bold text-gray-700 mb-2">App not found</h2>
-        <Link to="/" className="text-brand-600 hover:underline text-sm">
+        <h2 className="text-xl font-bold text-gray-300 mb-2">App not found</h2>
+        <Link to="/" className="text-brand-400 hover:underline text-sm">
           Back to home
         </Link>
       </div>
@@ -265,20 +265,20 @@ export default function AppDetailPage() {
       {/* Back */}
       <Link
         to="/"
-        className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-brand-600 mb-6 transition-colors"
+        className="inline-flex items-center gap-1.5 text-sm text-gray-400 hover:text-brand-400 mb-6 transition-colors"
       >
         <HiOutlineArrowLeft size={16} />
         Back to all apps
       </Link>
 
       {/* Header */}
-      <div className="bg-white rounded-2xl border border-gray-200 p-6 sm:p-8">
+      <div className="bg-gray-900 rounded-2xl border border-gray-700/50 p-6 sm:p-8">
         <div className="flex items-start gap-5">
           {app.logoUrl ? (
             <img
               src={app.logoUrl}
               alt={app.name}
-              className="w-20 h-20 rounded-2xl object-cover bg-gray-100 shrink-0"
+              className="w-20 h-20 rounded-2xl object-cover bg-gray-800 shrink-0"
               onError={(e) => {
                 e.target.style.display = 'none';
                 e.target.nextSibling.style.display = 'flex';
@@ -286,18 +286,18 @@ export default function AppDetailPage() {
             />
           ) : null}
           <div
-            className={`w-20 h-20 rounded-2xl bg-brand-100 shrink-0 items-center justify-center text-brand-600 font-bold text-3xl ${app.logoUrl ? 'hidden' : 'flex'}`}
+            className={`w-20 h-20 rounded-2xl bg-brand-900/40 shrink-0 items-center justify-center text-brand-400 font-bold text-3xl ${app.logoUrl ? 'hidden' : 'flex'}`}
           >
             {app.name?.charAt(0)?.toUpperCase()}
           </div>
 
           <div className="min-w-0 flex-1">
             <div className="flex items-start justify-between gap-3">
-              <h1 className="text-2xl font-extrabold text-gray-900">{app.name}</h1>
+              <h1 className="text-2xl font-extrabold text-gray-100">{app.name}</h1>
               {user?.uid === app.submittedBy && (
                 <button
                   onClick={handleEditClick}
-                  className="shrink-0 flex items-center gap-1.5 text-sm font-medium text-gray-500 hover:text-brand-600 hover:bg-brand-50 px-3 py-1.5 rounded-lg border border-gray-200 hover:border-brand-300 transition-colors"
+                  className="shrink-0 flex items-center gap-1.5 text-sm font-medium text-gray-400 hover:text-brand-400 hover:bg-brand-900/30 px-3 py-1.5 rounded-lg border border-gray-700 hover:border-brand-700 transition-colors"
                   title="Edit this app"
                 >
                   <HiOutlinePencil size={15} />
@@ -308,7 +308,7 @@ export default function AppDetailPage() {
             <div className="flex flex-wrap items-center gap-3 mt-2">
               <div className="flex items-center gap-2">
                 <StarRating rating={avgRating} size={20} />
-                <span className="text-sm text-gray-500 font-medium">
+                <span className="text-sm text-gray-400 font-medium">
                   {avgRating.toFixed(1)} ({app.ratingCount || 0} ratings)
                 </span>
               </div>
@@ -320,7 +320,7 @@ export default function AppDetailPage() {
         </div>
 
         {/* Description */}
-        <p className="mt-6 text-gray-600 leading-relaxed">{app.description}</p>
+        <p className="mt-6 text-gray-300 leading-relaxed">{app.description}</p>
 
         {/* Meta */}
         <div className="mt-6 flex flex-wrap items-center gap-4">
@@ -334,12 +334,12 @@ export default function AppDetailPage() {
               Visit Website <HiOutlineExternalLink size={16} />
             </a>
           )}
-          <span className="text-sm text-gray-400">
-            Pricing: <span className="font-medium text-gray-600">{app.pricing}</span>
+          <span className="text-sm text-gray-500">
+            Pricing: <span className="font-medium text-gray-300">{app.pricing}</span>
           </span>
           {app.submittedByName && (
-            <span className="text-sm text-gray-400">
-              Submitted by <span className="font-medium text-gray-600">{app.submittedByName}</span>
+            <span className="text-sm text-gray-500">
+              Submitted by <span className="font-medium text-gray-300">{app.submittedByName}</span>
             </span>
           )}
         </div>
@@ -350,7 +350,7 @@ export default function AppDetailPage() {
             {app.tags.map((tag) => (
               <span
                 key={tag}
-                className="text-xs font-medium px-2.5 py-1 rounded-full bg-brand-100 text-brand-700"
+                className="text-xs font-medium px-2.5 py-1 rounded-full bg-brand-900/40 text-brand-300"
               >
                 {tag}
               </span>
@@ -360,8 +360,8 @@ export default function AppDetailPage() {
       </div>
 
       {/* Rate this app */}
-      <div className="bg-white rounded-2xl border border-gray-200 p-6 mt-6">
-        <h2 className="text-lg font-bold text-gray-900 mb-3">
+      <div className="bg-gray-900 rounded-2xl border border-gray-700/50 p-6 mt-6">
+        <h2 className="text-lg font-bold text-gray-100 mb-3">
           {userRating > 0 ? 'Your Rating' : 'Rate this app'}
         </h2>
         <div className="flex items-center gap-4">
@@ -372,21 +372,21 @@ export default function AppDetailPage() {
             onRate={handleRate}
           />
           {userRating > 0 && (
-            <span className="text-sm font-medium text-brand-600">
+            <span className="text-sm font-medium text-brand-400">
               You rated this {userRating}/5
             </span>
           )}
         </div>
         {!user && (
-          <p className="text-xs text-gray-400 mt-2">
+          <p className="text-xs text-gray-500 mt-2">
             Sign in to rate this app
           </p>
         )}
       </div>
 
       {/* Comments */}
-      <div className="bg-white rounded-2xl border border-gray-200 p-6 mt-6">
-        <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+      <div className="bg-gray-900 rounded-2xl border border-gray-700/50 p-6 mt-6">
+        <h2 className="text-lg font-bold text-gray-100 mb-4 flex items-center gap-2">
           <HiOutlineChatAlt2 size={20} />
           Comments ({comments.length})
         </h2>
@@ -398,13 +398,13 @@ export default function AppDetailPage() {
             onChange={(e) => setNewComment(e.target.value)}
             placeholder={user ? 'Share your thoughts about this app...' : 'Sign in to leave a comment...'}
             rows={3}
-            className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-400 transition placeholder:text-gray-400"
+            className="w-full border border-gray-700 rounded-xl px-4 py-3 bg-gray-800 text-gray-100 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition placeholder:text-gray-500"
           />
           <div className="flex justify-end mt-2">
             <button
               type="submit"
               disabled={submittingComment || !newComment.trim()}
-              className="bg-brand-600 hover:bg-brand-700 disabled:bg-gray-300 disabled:cursor-not-allowed text-white text-sm font-semibold px-5 py-2 rounded-lg transition-colors"
+              className="bg-brand-600 hover:bg-brand-700 disabled:bg-gray-700 disabled:cursor-not-allowed text-white text-sm font-semibold px-5 py-2 rounded-lg transition-colors"
             >
               {submittingComment ? 'Posting...' : 'Post Comment'}
             </button>
@@ -413,7 +413,7 @@ export default function AppDetailPage() {
 
         {/* Comment list */}
         {comments.length === 0 ? (
-          <p className="text-center text-gray-400 text-sm py-6">
+          <p className="text-center text-gray-500 text-sm py-6">
             No comments yet. Be the first to share your experience!
           </p>
         ) : (
@@ -421,7 +421,7 @@ export default function AppDetailPage() {
             {comments.map((comment) => (
               <div
                 key={comment.id}
-                className="flex gap-3 p-4 bg-gray-50 rounded-xl"
+                className="flex gap-3 p-4 bg-gray-800/60 rounded-xl"
               >
                 <img
                   src={comment.userPhoto || `https://ui-avatars.com/api/?name=${comment.userName}&background=3b6cf7&color=fff&size=40`}
@@ -431,11 +431,11 @@ export default function AppDetailPage() {
                 />
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center justify-between">
-                    <span className="text-sm font-semibold text-gray-800">
+                    <span className="text-sm font-semibold text-gray-200">
                       {comment.userName}
                     </span>
                     <div className="flex items-center gap-2">
-                      <span className="text-xs text-gray-400">
+                      <span className="text-xs text-gray-500">
                         {comment.createdAt?.toDate
                           ? comment.createdAt.toDate().toLocaleDateString('en-US', {
                               month: 'short',
@@ -447,7 +447,7 @@ export default function AppDetailPage() {
                       {user?.uid === comment.userId && (
                         <button
                           onClick={() => handleDeleteComment(comment.id)}
-                          className="text-gray-400 hover:text-red-500 transition-colors"
+                          className="text-gray-500 hover:text-red-400 transition-colors"
                           title="Delete comment"
                         >
                           <HiOutlineTrash size={14} />
@@ -455,7 +455,7 @@ export default function AppDetailPage() {
                       )}
                     </div>
                   </div>
-                  <p className="text-sm text-gray-600 mt-1 leading-relaxed">
+                  <p className="text-sm text-gray-400 mt-1 leading-relaxed">
                     {comment.text}
                   </p>
                 </div>
