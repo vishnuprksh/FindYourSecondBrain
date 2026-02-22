@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-import { onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth';
-import { auth, googleProvider } from '../firebase';
+import { onAuthStateChanged, signInAnonymously, signOut } from 'firebase/auth';
+import { auth } from '../firebase';
 
 const AuthContext = createContext(null);
 
@@ -20,9 +20,9 @@ export function AuthProvider({ children }) {
     return unsubscribe;
   }, []);
 
-  const loginWithGoogle = async () => {
+  const loginAnonymously = async () => {
     try {
-      await signInWithPopup(auth, googleProvider);
+      await signInAnonymously(auth);
     } catch (error) {
       console.error('Login error:', error);
       throw error;
@@ -33,7 +33,7 @@ export function AuthProvider({ children }) {
     await signOut(auth);
   };
 
-  const value = { user, loading, loginWithGoogle, logout };
+  const value = { user, loading, loginAnonymously, logout };
 
   return (
     <AuthContext.Provider value={value}>

@@ -1,18 +1,17 @@
-import { FcGoogle } from 'react-icons/fc';
-import { HiX } from 'react-icons/hi';
+import { HiX, HiOutlineUser } from 'react-icons/hi';
 import { useAuth } from '../contexts/AuthContext';
 
 export default function AuthModal({ isOpen, onClose, message }) {
-  const { loginWithGoogle } = useAuth();
+  const { loginAnonymously } = useAuth();
 
   if (!isOpen) return null;
 
   const handleLogin = async () => {
     try {
-      await loginWithGoogle();
+      await loginAnonymously();
       onClose();
     } catch (err) {
-      // user closed popup or error
+      // error signing in anonymously
     }
   };
 
@@ -34,14 +33,14 @@ export default function AuthModal({ isOpen, onClose, message }) {
           </div>
           <h3 className="text-xl font-bold text-gray-900 mb-2">Sign in required</h3>
           <p className="text-gray-500 text-sm mb-6">
-            {message || 'Please sign in with Google to continue.'}
+            {message || 'Continue as a guest to proceed.'}
           </p>
           <button
             onClick={handleLogin}
-            className="w-full flex items-center justify-center gap-3 bg-white border-2 border-gray-200 rounded-xl px-6 py-3 text-sm font-semibold text-gray-700 hover:bg-gray-50 hover:border-gray-300 transition-all shadow-sm"
+            className="w-full flex items-center justify-center gap-3 bg-brand-600 hover:bg-brand-700 text-white rounded-xl px-6 py-3 text-sm font-semibold transition-all shadow-sm"
           >
-            <FcGoogle size={22} />
-            Continue with Google
+            <HiOutlineUser size={22} />
+            Continue as Guest
           </button>
         </div>
       </div>
