@@ -303,7 +303,7 @@ export default function HomePage() {
           </div>
         )}
       </div>
-              className="text-sm border border-gray-700 rounded-lg px-3 py-1.5 bg-gray-800 text-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-500/20"
+
       {/* App Grid */}
       {loading ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
