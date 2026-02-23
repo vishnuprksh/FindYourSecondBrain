@@ -86,3 +86,4 @@ jspm_packages/
 # Test and token scripts
 get-token.js
 test-function.js
+firebase.js
